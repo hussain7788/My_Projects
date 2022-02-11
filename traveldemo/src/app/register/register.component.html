@@ -1,0 +1,51 @@
+<form #reg="ngForm"  (ngSubmit)="save(reg)">
+<table align="center" border="0">
+    
+    
+
+    <tr>
+        <th style="border-radius: 30px;font-size: 20px;color: white;text-align: center;background-color: blue;" colspan="3">Register</th>
+    
+    </tr>
+    <tr>
+        <th style="color: blue;">id</th>
+        <th style="padding: 10px;"><input type="text" [(ngModel)]="id" name="id"></th>
+    </tr>
+    <tr>
+        <th style="color: blue;">name</th>
+        <th style="padding: 10px;"><input type="text" [(ngModel)]="name" name="name"></th>
+    </tr>
+    <tr>
+        <th style="color: blue;">address</th>
+        <th style="padding: 10px;"><textarea [(ngModel)]="address" name="address"></textarea></th>
+    </tr>
+    <tr>
+        <th style="color: blue;">gender</th>
+        <th><input type="radio" [(ngModel)]="gender" name="gender" value="male">male </th>
+        <th><input type="radio" [(ngModel)]="gender" name="gender" value="female">female </th> 
+    </tr>
+    <tr>
+        <th style="color: blue;">username</th>
+        <th style="padding: 10px;"><input type="text" [(ngModel)]="username" name="username"></th>
+    </tr>
+    <tr>
+        <th style="color: blue;">password</th>
+        <th style="padding: 10px;"><input type="password" [(ngModel)]="password" name="password"></th>
+    </tr>
+            
+    <tr>
+        <th colspan="4">
+            <button type="submit" class="btn btn-primary">
+            Register
+        </button>
+    </th>
+    <th>
+        <button type="submit" class="btn btn-danger">
+            <a routerLink="/">Back</a>
+        </button>
+    </th>
+    </tr>
+
+</table>
+
+{{reg.value  | json}}

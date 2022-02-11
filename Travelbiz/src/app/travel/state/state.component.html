@@ -1,0 +1,44 @@
+<app-head></app-head>
+<app-foot></app-foot>
+<table align="center" border="1">
+    <tr>
+        <th style="color: red;font-size: 30px;" colspan="3" width="400px">enter state details</th>
+    </tr>
+    <tr>
+        <th>id</th>
+        <th><input type="number" [(ngModel)]="id"></th>
+    </tr>
+    <tr>
+        <th>state id</th>
+        <th><input type="number" [(ngModel)]="stateid"></th>
+    </tr>
+    <tr>
+        <th>state name</th>
+        <th><input type="text" [(ngModel)]="statename"></th>
+    </tr>
+    <tr>
+        <th colspan="3"><button type="submit" (click)="onSubmit()">register</button></th>
+        <!-- <th colspan="3"><button type="submit" (click)="OnUpdate()">update</button></th> -->
+    </tr>
+    
+</table>
+
+<table align="center" center="1" border="1" class="table table-dark" style="width: 600px;height: 50px;">
+    <tr>
+        <th style="background-color: blue;">id</th>
+        <th style="background-color: blue;">sid</th>
+        <th style="background-color: blue;">sname</th>
+        <th style="background-color: blue;">delete</th>
+        <th style="background-color: blue;">update</th>
+    </tr>
+    <tr *ngFor="let x of statelist">
+        <th>{{x.id}}</th>
+        <th>{{x.stateid}}</th>
+        <th>{{x.statename}}</th>
+        <!-- <th><button type="submit" (click)="GetEmpById(x.id)">edit</button></th> -->
+        <th><button type="button" (click)="DeleteEmp(x.id)"class="btn btn-warning">delete</button></th>
+        <th><button type="submit"  class="btn btn-warning">update</button> </th>
+            
+
+    </tr>
+</table>

@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<!--Main layout-->
+<main class="mt-5 pt-4">
+  <div class="container dark-grey-text mt-5">
+
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <img src="{{product.p_image.url}}" width="300px" height="200px" class="img-fluid" alt="">
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <!--Content-->
+        <div class="p-4">
+          <h3>{{product.p_name}}</h3>
+          <p class="lead">
+            <span>Price : {{product.p_price}}</span>
+          </p>
+
+          <p class="lead font-weight-bold">Description</p>
+
+          <p>{{product.p_desc}}</p>
+
+          <form class="d-flex justify-content-left">
+            <!-- Default input -->
+            <div class="col-6">
+              <label for="select">Qty</label>
+              <select id="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+
+            </div>
+            {% if request.user.is_authenticated %}
+            <button id="add-button" value="{{product.id}}" class="btn btn-primary btn-md my-0 p" type="submit">
+              Add To Cart
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </button>
+            {% else %}
+            <a href="{% url 'login_user' %}">
+              <button class="btn btn-primary btn-md my-0 p" type="button">
+                Please Login To Proceed
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+            </a>
+            {% endif %}
+
+          </form>
+
+        </div>
+        <!--Content-->
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+    <hr>
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center wow fadeIn">
+
+      <!--Grid column-->
+      <div class="col-md-6 text-center">
+
+        <h4 class="my-4 h4">Additional information</h4>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta
+          odit
+          voluptates,
+          quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-12 mb-4">
+
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-6 mb-4">
+
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-6 mb-4">
+
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+  </div>
+</main>
+<!--Main layout-->
+<script>
+  $(document).on("click", "#add-button", function (e) {
+    e.preventDefault();
+    // getting the button value 
+    var pr_id = $("#add-button").val();
+    //getting the input number from add cart number
+    // var pr_qnty = $("#product_quantity").val();
+    var pr_qnty = $('#select option:selected').text()
+    console.log("quantity::", pr_qnty)
+    my_data = { product_id: pr_id, product_qty: pr_qnty, csrfmiddlewaretoken: "{{csrf_token}}" }
+    $.ajax({
+      method: 'POST',
+      url: "{% url 'basket_add' %}",
+      data: my_data,
+      success: function (data) {
+        console.log("json data::", data)
+        document.getElementById("basket_qty").innerHTML = data.qty
+
+      },
+      error: function (xhr, error, err) {
+        console.log(xhr, error, err)
+      }
+
+    })
+  })
+</script>
+
+{%endblock%}

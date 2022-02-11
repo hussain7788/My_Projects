@@ -1,0 +1,46 @@
+<app-head></app-head>
+<app-foot></app-foot>
+
+<table align="center" border="0">
+    
+    <tr>
+        <th colspan="2" style="color: white;text-shadow: 5px 5px 10px red;font-size: 30px;background-color: black;">bus details</th>
+    </tr>
+    <tr>
+        <th>
+            <div *ngFor="let x of busdetails">
+            <table align="center" border="1">
+                <tr>
+                    <th rowspan="5" width="300px" style="border-radius: 200px;"><img [src]="x.photopath" width="300px"/></th>
+                
+                
+                    <th style="font-size: 20px;background-color: black;color: white;">sno</th>
+                    <th style="font-size: 20px;background-color: black;color: white;">{{x.sno}}</th>
+                
+                </tr>
+                <tr>
+                    <th style="font-size: 20px;background-color: black;color: white;">from_to</th>
+                    <th style="font-size: 20px;background-color: black;color: white;">{{x.from_to}}</th>
+                </tr>
+                <tr>
+                    <th style="font-size: 20px;background-color: black;color: white;">timings</th>
+                    <th style="font-size: 20px;background-color: black;color: white;">{{x.timings}}</th>
+                </tr>
+                <tr>
+                    <th style="font-size: 20px;background-color: black;color: white;">capacity</th>
+                    <th style="font-size: 20px;background-color: black;color: white;">{{x.capacity}}</th>
+                </tr>
+                <tr>
+                    <th style="font-size: 20px;background-color: black;color: white;">fare</th>
+                    <th style="font-size: 20px;background-color: black;color: white;">{{x.fare}}</th>
+                </tr>
+                <tr>
+                    <th colspan="5"><button type="button" class="btn btn-danger">BOOKHERE</button></th>
+                </tr>
+                
+            </table>
+            </div>
+        </th>
+    </tr>
+
+</table>

@@ -1,0 +1,82 @@
+<app-head></app-head>
+<app-foot></app-foot>
+    <table align="center" border="0">
+        <tr>
+            <th height="50px"></th>
+        </tr>
+        <tr>
+            <th style="border-radius: 30px;font-size: 20px;color: white;text-align: center;padding: 5px;background-color: blue;" colspan="3">BOOK HERE</th>
+        </tr>
+        <tr>
+            <th style="color: blue;">id</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="id"></th>
+        </tr>
+        <tr>
+            <th style="color: blue;">service no</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="sno"></th>
+        </tr>
+        <tr>
+            <th style="color: blue;">from</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="from"></th>
+        </tr>
+        <tr>
+            <th style="color: blue;">To</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="to"></th>
+        </tr>
+        <tr>
+            <th style="color: blue;">dep-time</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="deptime"></th>
+        </tr>
+        <tr>
+            <th style="color: blue;">arr_time</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="arrtime" ></th>
+        </tr>
+        <tr>
+            <th style="color: blue;">fare</th>
+            <th style="padding: 10px;"><input type="text" [(ngModel)]="fare"></th>
+        </tr>
+                
+        <tr>
+            <th colspan="4">
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+                add bus
+            </button>
+        </th>
+        </tr>
+    
+    </table>
+
+    <table align="center" center="1" border="1" class="table table-dark" style="width: 700px;height: 50px;">
+                <tr>
+                    <th style="background-color: blue;">id</th>
+                    <th style="background-color: blue;">sno</th>
+                    <th style="background-color: blue;">from</th>
+                    <th style="background-color: blue;">to</th>
+                    <th style="background-color: blue;">deptime</th>
+                    <th style="background-color: blue;">arrtime</th>
+                    <th style="background-color: blue;">fare</th>
+                    <th style="background-color: blue;">delete</th>
+                    <th style="background-color: blue;">update</th>
+                </tr>
+                <tr *ngFor="let x of buslist">
+                    <th>{{x.id}}</th>
+                    <th>{{x.sno}}</th>
+                    <th>{{x.from}}</th>
+                    <th>{{x.to}}</th>
+                    <th>{{x.deptime}}</th>
+                    <th>{{x.arrtime}}</th>
+                    <th>{{x.fare}}</th>
+                    <th><button type="submit" (click)="deletebus(x.id)" class="btn btn-warning">delete</button> </th>
+                    <th><button type="submit"  class="btn btn-warning">update</button> </th>
+                    
+                </tr>
+            </table>
+        
+
+
+
+
+
+
+
+    

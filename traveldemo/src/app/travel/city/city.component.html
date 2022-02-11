@@ -1,0 +1,44 @@
+<app-head></app-head>
+<app-foot></app-foot>
+<table align="center" border="1" width="400px">
+    <tr>
+        <th style="color: red;font-size: 30px;" colspan="3">enter city details</th>
+    </tr>
+    <tr>
+        <th colspan="5">select state:
+            <select [(ngModel)]="select" name="select">
+                <option *ngFor="let x of city" [value]="x.statename">{{x.statename}}</option>
+                
+            </select>
+        </th>
+    </tr>
+    <tr>
+        <th>id</th>
+        <th><input type="number" [(ngModel)]="cityid"></th>
+    </tr>
+    <tr>
+        <th>city name</th>
+        <th><input type="text" [(ngModel)]="cityname"></th>
+    </tr>
+    <tr>
+        <th colspan="3"><button type="submit" (click)="onSubmit()" class="btn btn-primary">save</button></th>
+    </tr>
+    
+</table>
+<table align="center" center="1" border="1" class="table table-dark" style="width: 600px;height: 50px;">
+    <tr>
+        <th style="background-color:blue;">id</th>
+        <th style="background-color:blue;">cityname</th>
+
+        <th style="background-color:blue;">statename</th>
+        <th style="background-color: blue;">delete</th>
+        <th style="background-color: blue;">update</th>
+    </tr>
+    <tr *ngFor="let x of citylist">
+        <th>{{x.id}}</th>
+        <th>{{x.cityname}}</th>
+        <th>{{x.state}}</th>
+        <th><button type="submit" (click)="deletecity(x.id)" class="btn btn-warning">delete</button></th>
+        <th><button type="submit"  class="btn btn-warning">update</button></th>
+    </tr>
+</table>

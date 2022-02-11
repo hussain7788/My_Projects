@@ -1,0 +1,17 @@
+<!-- 
+<a routerLink="home" routerLinkActive="active">home</a>
+|
+<a routerLink="aboutus" routerLinkActive="active">Aboutus</a>
+|
+<a routerLink="contact" routerLinkActive="active">contact</a>
+| -->
+<th style="font-size: 30px;">
+  <a routerLink="login" routerLinkActive="active" *ngIf="router.url=='/'">Login</a>
+  </th>
+  <th style="font-size: 30px;padding: 50px;">
+      <a routerLink="register" routerLinkActive="active" *ngIf="router.url=='/'">Register</a>
+  </th>
+  
+  
+  
+  <router-outlet></router-outlet>
