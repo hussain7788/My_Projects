@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block 'content' %}
+
+<table class="table">
+  <h3>Country Table</h3>
+  <a href="{% url 'dashboard' %}">
+    <button class="btn btn-primary">Back</button>
+  </a>
+  <thead style="width: 30px">
+    <th>Country Code</th>
+    <th>Country Name</th>
+    <th>Continent</th>
+    <th>Region</th>
+    <th>Surfacearea</th>
+    <th>indepyear</th>
+    <th>population</th>
+    <th>life expectancy</th>
+    <th>GNP</th>
+    <th>GNPOld</th>
+    <th>local name</th>
+    <th>government form</th>
+    <th>headofstate</th>
+    <th>capital</th>
+    <th>code2</th>
+    <th>cities</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{country.code}}</td>
+      <td>{{country.name}}</td>
+      <td>{{country.continent}}</td>
+      <td>{{country.Region}}</td>
+      <td>{{country.surfacearea}}</td>
+      <td>{{country.indepyear}}</td>
+      <td>{{country.population}}</td>
+      <td>{{country.lifeexpectancy}}</td>
+      <td>{{country.GNP}}</td>
+      <td>{{country.GNPOld}}</td>
+      <td>{{country.localname}}</td>
+      <td>{{country.governmentform}}</td>
+      <td>{{country.headofstate}}</td>
+      <td>{{country.capital}}</td>
+      <td>{{country.code2}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <h3>City Table</h3>
+  <thead style="width: 30px">
+    <th>name</th>
+    <th>countrycode</th>
+    <th>district</th>
+    <th>population</th>
+  </thead>
+  <tbody>
+    {% for ct in city %}
+    <tr>
+      <td>{{ct.name}}</td>
+      <td>{{ct.countrycode}}</td>
+      <td>{{ct.district}}</td>
+      <td>{{ct.population}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<table class="table">
+  <h3>Country Language Table</h3>
+  <thead style="width: 30px">
+    <th>countrycode</th>
+    <th>language</th>
+    <th>isofficial</th>
+    <th>percentage</th>
+  </thead>
+  <tbody>
+    {% for ctl in country_lan %}
+    <tr>
+      <td>{{ctl.countrycode}}</td>
+      <td>{{ctl.language}}</td>
+      <td>{{ctl.isofficial}}</td>
+      <td>{{ctl.percentage}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block 'content' %}
+
+<form action="{% url 'validate_otp' %}" method="post">
+  <input type="text" placeholder="enter OTP" name="otp" />
+  <input type="submit" value="validate otp" />
+</form>
+
+{% endblock %}

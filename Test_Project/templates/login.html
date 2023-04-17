@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block 'content' %}
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="container-fluid">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="email" class="col-form-label">Email</label>
+      </div>
+      <div class="col-auto">
+        <input type="email" id="email" name="email" class="form-control" />
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="inputPassword" class="col-form-label">Password</label>
+      </div>
+      <div class="col-auto">
+        <input
+          type="password"
+          id="inputPassword"
+          name="password"
+          class="form-control"
+          aria-labelledby="passwordHelpInline"
+        />
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <input class="btn btn-primary" type="submit" value="Submit" />
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

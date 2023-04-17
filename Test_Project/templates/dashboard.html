@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% block 'content' %}
+<script>
+  $(document).ready(function () {
+    $("#search").on("input", function () {
+      var query = $(this).val();
+      console.log(query);
+      if (query.length >= 1) {
+        $.ajax({
+          url: "{% url 'auto_suggest' %}",
+          data: { query: query },
+          success: function (data) {
+            console.log("query data::", data);
+            $("#auto_suggest").empty();
+            $.each(data, function (index, item) {
+              if (item.language) {
+                $("#auto_suggest").append(
+                  '<option value="' +
+                    item.language +
+                    '">' +
+                    item.countrycode +
+                    "</option>"
+                );
+              } else if (item.code) {
+                $("#auto_suggest").append(
+                  '<option value="' +
+                    item.name +
+                    '">' +
+                    item.code +
+                    " (" +
+                    item.population +
+                    ")</option>"
+                );
+              } else {
+                $("#auto_suggest").append(
+                  '<option value="' +
+                    item.name +
+                    '">' +
+                    " (" +
+                    item.countrycode +
+                    ")" +
+                    " (" +
+                    item.district +
+                    ")" +
+                    "</option>"
+                );
+              }
+            });
+          },
+        });
+      } else {
+        $("#auto_suggest").empty();
+      }
+    });
+  });
+</script>
+
+<form action="{% url 'search' %}" method="post">
+  <div class="container-fluid">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="email" class="col-form-label">Search</label>
+      </div>
+      <div class="col-auto">
+        <input
+          type="text"
+          list="auto_suggest"
+          id="search"
+          name="query"
+          class="form-control"
+        />
+        <datalist id="auto_suggest"> </datalist>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <input class="btn btn-primary" type="submit" value="Search" />
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
