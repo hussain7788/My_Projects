@@ -153,6 +153,9 @@ def search(request):
     if request.method == "POST":
         query = request.POST.get("query")
 
+        """
+            Fetching Country data with associated cities and city languages
+        """
         try:
             country_obj = Country.objects.get(
                 name__iexact = query
@@ -161,7 +164,11 @@ def search(request):
             country_lan = countrylanguage.objects.filter(countrycode= country_obj)
             context.update({"country":country_obj, "city":city_obj, "country_lan":country_lan})
         except:
-
+            
+            """
+                Fetching Country language data with associated country and cities
+            """
+            
             if not context:
                 country_lan = countrylanguage.objects.filter(
                     language__iexact = query
@@ -172,6 +179,10 @@ def search(request):
                     city_obj = city.objects.filter(countrycode= country_obj).order_by('-population')
                     context.update({"country": country_obj, "city":city_obj})
                 context.update({"country_lan":country_lan})
+
+            """
+                Fetching City data with associated country and country langugages
+            """
 
             if not country_lan:
                 city_obj = city.objects.filter(
