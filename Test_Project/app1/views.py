@@ -165,13 +165,23 @@ def search(request):
             if not context:
                 country_lan = countrylanguage.objects.filter(
                     language__iexact = query
-                )
+                ).order_by('percentage')
+                for c_lan in country_lan:
+                    c_code = c_lan.countrycode.code
+                    country_obj = Country.objects.get(code=c_code)
+                    city_obj = city.objects.filter(countrycode= country_obj).order_by('-population')
+                    context.update({"country": country_obj, "city":city_obj})
                 context.update({"country_lan":country_lan})
 
             if not country_lan:
                 city_obj = city.objects.filter(
                 name__iexact = query
-                )
+                ).order_by('-population')
+                for ct in city_obj:
+                    c_code = ct.countrycode.code
+                    country_obj = Country.objects.get(code=c_code)
+                    country_lan = countrylanguage.objects.filter(countrycode=country_obj).order_by('-percentage')
+                    context.update({"country": country_obj, "country_lan": country_lan})
                 context.update({"city":city_obj})
 
     print("context:::::::", context)
