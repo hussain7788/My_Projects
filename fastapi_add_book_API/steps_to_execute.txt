@@ -1,0 +1,10 @@
+1. First install all the required packages which are given in requirements.txt
+2. Now open terminal and go to fastapi_add_book_API folder
+3. Run below command
+        uvicorn app:app --reload
+
+4. The above command will start the server
+5. Now go to browser and type http://127.0.0.1:8000/docs
+6. You will get fastapi built in swagger UI 
+7. Test the API in all senarious in swagger UI
+8. Done
