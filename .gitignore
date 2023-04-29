@@ -1,0 +1,11 @@
+*.pyc
+node_modules/
+migrations/
+__pycache__/
+chrome driver/
+static/frontend/
+.vscode/
+Git/
+db.sqlite3
+$RECYCLE.BIN/
+reactApp/.venv/
