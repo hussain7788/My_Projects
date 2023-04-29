@@ -1,5 +1,3 @@
-from tkinter import Widget
-from attr import attr, attrs
 from django.contrib.auth.models import User
 from .models import *
 from django import forms
