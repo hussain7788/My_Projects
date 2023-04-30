@@ -37,7 +37,7 @@ class Basket():
         for item in basket.values():
             item['price'] = float(item['price'])
             item['total_price'] = item['price'] * item['qty']
-            print("basket values::", basket)
+            # print("basket values::", basket)
             yield item
 
     def update(self, product, qty):
@@ -57,7 +57,7 @@ class Basket():
 
         if product_id in self.basket:
             del self.basket[product_id]
-            print(product_id)
+            # print(product_id)
             self.save()
 
     def save(self):
