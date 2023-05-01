@@ -5,8 +5,9 @@ from basket.basket import Basket
 from .models import Address
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='login_user')
 def shipping_address(request):
     basket = Basket(request)
     if request.method == "POST":
@@ -28,6 +29,6 @@ def shipping_address(request):
     else:
         return render(request, "checkout/shipping_address.html", {"basket": basket})
 
-
+@login_required(login_url='login_user')
 def payment_selection(request):
     return render(request, "checkout/payment_selection.html")

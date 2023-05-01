@@ -6,6 +6,7 @@ from .forms import UserRegForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -86,7 +87,7 @@ def login_user(request):
     else:
         return render(request, "login_user.html")
 
-
+@login_required(login_url='login_user')
 def logout_user(request):
     logout(request)
     return redirect('login_user')
