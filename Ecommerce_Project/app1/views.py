@@ -102,3 +102,26 @@ def category_list(request, category_slug):
 def product_details(request, slug):
     product = get_object_or_404(Product, slug=slug)
     return render(request, "product_details.html", {"product": product})
+
+def auto_suggest(request):
+    if request.method == "GET":
+        query = request.GET.get('query')
+        try:
+            data = Product.objects.filter(p_name__icontains=query).values("p_name", "p_price")
+        except:
+            return JsonResponse({"message":"Data Not Found"})
+        else:
+            return JsonResponse(list(data), safe=False)
+
+def search_product(request):
+    if request.method == "GET":
+        query = request.GET.get('query')
+        try:
+            data = Product.objects.filter(p_name__icontains=query)
+        except:
+            return redirect('index')
+        else:
+            context = {"products": data}
+            return render(request, "category_list.html", context)
+
+    
