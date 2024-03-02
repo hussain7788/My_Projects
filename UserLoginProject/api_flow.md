@@ -1,5 +1,5 @@
-# Django MVT architecture Overview
-- Important files in django framework
+### Django MVT architecture Overview
+- Important files in django framework to check 
   - urls.py
   - views.py
   - models.py
