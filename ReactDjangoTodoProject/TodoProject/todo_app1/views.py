@@ -24,6 +24,8 @@ class TodoApiVIew(APIView):
         return Response(ser.data)
 
     def post(self, request, format=None):
+
+        import pdb;pdb.set_trace()
        
         if request.query_params['section'] == "create":
             task_name = request.POST.get("task_name")

@@ -1,11 +1,12 @@
-// src/components/Login.tsx
+// src/components/AddCustomer.tsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Alert } from 'react-bootstrap';
-import { post, ADD_CUSTOMER_URL, LOGOUT_URL } from '../backendinterface.ts';
-import Logout from './Logout.tsx';
+import { ADD_CUSTOMER_URL, LOGOUT_URL } from '../backendinterface.ts';
+import axios from "axios";
 
-const Login: React.FC = () => {
+
+const AddCustomer = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -27,14 +28,16 @@ const Login: React.FC = () => {
   const validateFields = () => {
     if (firstName.trim() && lastName.trim() && 
     email.trim() && dob.trim() && phone.trim()){
+      var output = { result: false, 
+                     error: "" }
 
         if (!isEmailValid(email)) {
-            return { result: false, 
-                     error: "Please enter a valid email address" };
+              output.error = "Please enter a valid email address"
+              return output
           }
         if (!isValidPhoneNumber(phone)){
-            return { result: false, 
-                     error: "Please provide valid phone number" };
+              output.error = "Please provide valid phone number"
+              return output
         }
         return { result: true, error: null}
     }
@@ -61,7 +64,7 @@ const Login: React.FC = () => {
         
   };
 
-  const handleSignup = async () => {
+  const handleAddCustomer = async () => {
     const output = validateFields()
     if (output.result && !output.error){
       try{
@@ -71,12 +74,15 @@ const Login: React.FC = () => {
         formData.append('email', email)
         formData.append('dob', dob)
         formData.append('phone', phone)
-        const response = await post(ADD_CUSTOMER_URL, formData);
-        console.log(response.data)
+        let authToken = localStorage.getItem('authToken')
+        const headers = {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${authToken}`,
+        };
+        const response = await axios.post(ADD_CUSTOMER_URL, formData, {headers});
         setSuccess(`${response.data.message}`)
         clearForm();
       }catch(error){
-        console.log("error", error)
         setError(`${error.response.data.error}`)
       }
     }else if (output.error){
@@ -86,15 +92,20 @@ const Login: React.FC = () => {
 
   const handleLogout = async () => {
     try{
-      let formData = new FormData
-      const response = await post(LOGOUT_URL, formData);
+      let authToken = localStorage.getItem('authToken')
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${authToken}`,
+      };
+      const response = await axios.post(LOGOUT_URL, null, {headers});
+      localStorage.removeItem('authToken');
       if (response.status === 200){
         navigate('/logout');
       }else{
-        setError("Logout failed. Please try again.");
+        navigate('/login');
     }
     }catch(error){
-      setError(error);
+      navigate('/login');
     }
   }
   const setAlert = () => {
@@ -188,7 +199,7 @@ const Login: React.FC = () => {
             }}
           />
         </div>
-        <Button variant="primary" onClick={handleSignup} className="w-100">
+        <Button variant="primary" onClick={handleAddCustomer} className="w-100">
           Add
         </Button>
         <Button variant="danger" onClick={handleLogout} className="mt-3" style={{ width: '80px' }}>
@@ -199,4 +210,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default AddCustomer;

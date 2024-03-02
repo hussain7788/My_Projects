@@ -4,4 +4,6 @@ django-cors-headers==3.14.0
 django-filter==22.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
+pillow==10.2.0
+
 

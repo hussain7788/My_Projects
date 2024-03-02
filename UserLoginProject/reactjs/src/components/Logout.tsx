@@ -7,7 +7,7 @@ const Logout = () =>{
     return (
         <div>
             <p className="mt-3 text-center">You logged out successfully..
-            <Link to="/signup">Click here</Link> to login again </p>
+            <Link to="/login">Click here</Link> to login again </p>
 
         </div>
     )

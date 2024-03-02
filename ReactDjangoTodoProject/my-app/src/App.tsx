@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import axios, {AxiosResponse} from 'axios';
-import {get, post, del, getCancelToken} from './backendinterface';
+import {get, post, del, getCancelToken} from './backendinterface.ts';
 
 
 interface ITodoItems {

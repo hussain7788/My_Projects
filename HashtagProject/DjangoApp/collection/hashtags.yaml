@@ -1,0 +1,26 @@
+info:
+  _collection_link: https://restless-meadow-436438.postman.co/workspace/postman-collection~6230881e-0b82-4b0e-ae70-d2f44fbf2b7d/collection/23122223-43865e4f-e635-40b6-aa22-b2ef9ec9260b?action=share&source=collection_link&creator=23122223
+  _exporter_id: "23122223"
+  _postman_id: 43865e4f-e635-40b6-aa22-b2ef9ec9260b
+  name: hashtag_collection
+  schema: https://schema.getpostman.com/json/collection/v2.1.0/collection.json
+item:
+  - name: get_hashtags
+    request:
+      header: []
+      method: GET
+      url:
+        host:
+          - localhost:8000
+        path:
+          - hashtags
+        protocol: http
+        query:
+          - key: section
+            value: get_hashtags
+          - key: start_date
+            value: "2024-01-23T18:30:00.000Z"
+          - key: end_date
+            value: "2024-01-31T18:30:00.000Z"
+        raw: http://localhost:8000/hashtags/?section=get_hashtags&start_date=2024-01-23T18:30:00.000Z&end_date=2024-01-31T18:30:00.000Z
+    response: []

@@ -13,7 +13,6 @@ const App = () => {
         <Route path="/login" Component={Login} />
         <Route path="/addCustomer" Component={AddCustomer} />
         <Route path="/logout" Component={Logout} />
-        {/* Redirect to login page if no route matches */}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

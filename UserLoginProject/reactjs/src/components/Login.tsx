@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Alert } from 'react-bootstrap';
-import { post, LOGIN_URL } from '../backendinterface.ts';
+import { LOGIN_URL } from '../backendinterface.ts';
+import axios from "axios";
 
 
-const Login: React.FC = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,8 +18,9 @@ const Login: React.FC = () => {
           let formData = new FormData
           formData.append('username', username)
           formData.append('password', password)
-          const response = await post(LOGIN_URL, formData);
-          console.log(response.data)
+          const response = await axios.post(LOGIN_URL, formData);
+          const authToken = response.data.token;
+          localStorage.setItem('authToken', authToken);
           navigate('/addCustomer');
       }catch(error){
         setError(error.response.data.error)
@@ -68,9 +70,6 @@ const Login: React.FC = () => {
         <Button variant="primary" onClick={handleLogin} className="w-100">
           Login
         </Button>
-        {/* <p className="mt-3 text-center">
-          Don't have an account? <Link to="/signup">Sign up</Link>
-        </p> */}
       </div>
     </div>
   );
